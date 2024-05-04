@@ -2,16 +2,12 @@ package br.com.livraygap.library.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.SQLInsert;
-import org.hibernate.annotations.SQLRestriction;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "user_of_lib")
 @Data
-@SQLRestriction("closed <> true")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,24 +30,20 @@ public class User {
 
     @Column
     @Enumerated(EnumType.STRING)
-    EnumTypeUser typeUser;
+    EnumTypeUser type_user;
 
     @Column
-    Boolean closed;
+    Boolean deleted_at;
 
     @Column
-    Date created_at;
+    String created_at;
 
     @Column
-    Date updated_at;
-
-    @Column
-    Date deleted_at;
+    String updated_at;
 
     public enum EnumTypeUser {
         commom, admin
     }
-
 }
 
 

@@ -2,6 +2,7 @@ package br.com.livraygap.library.controllers;
 
 import br.com.livraygap.library.entities.User;
 import br.com.livraygap.library.services.UserService;
+import br.com.livraygap.library.utils.FormatDates;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,19 @@ public class UserController {
 
     @DeleteMapping("/DEL-USER/{id}")
     public ResponseEntity<Object> delUser(@PathVariable Long id){
-        return ResponseEntity.ok("Usuário Deletado com Sucesso");
+        service.delUser(id);
+        return ResponseEntity.ok("Usuário Deletado com Sucesso!");
+    }
+
+    @PutMapping("/PUT-USER/{id}")
+    public ResponseEntity<Object> updUser(@PathVariable Long id, @RequestBody User user){
+        try{
+            service.updUser(user, id);
+            return ResponseEntity.ok("Usuário Atualizado com Sucesso!");
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

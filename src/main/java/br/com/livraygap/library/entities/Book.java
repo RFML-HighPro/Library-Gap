@@ -15,6 +15,9 @@ public class Book {
     Long id;
 
     @Column
+    String title;
+
+    @Column
     String author;
 
     @Column
@@ -28,22 +31,22 @@ public class Book {
     EnumGenre genre;
 
     @Column
-    BigInteger isbn;
+    String isbn;
 
     @Column
     Double price;
 
     @Column
-    Date release_date;
+    String release_date;
 
     @Column
-    Date created_at;
+    Boolean deleted_at;
 
     @Column
-    Date updated_at;
+    String created_at;
 
     @Column
-    Date deleted_at;
+    String updated_at;
 
     public enum EnumGenre {
         Romance,
