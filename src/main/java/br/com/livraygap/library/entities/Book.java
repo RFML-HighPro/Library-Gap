@@ -1,10 +1,8 @@
 package br.com.livraygap.library.entities;
 
+import br.com.livraygap.library.enums.GenreEnum;
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.math.BigInteger;
-import java.util.Date;
 
 @Entity
 @Table(name = "book")
@@ -14,52 +12,46 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column
+    @Column(name = "title")
     String title;
 
-    @Column
+    @Column(name = "author")
     String author;
 
-    @Column
+    @Column(name = "publisher")
     String publisher;
 
-    @Column
+    @Column(name = "pages")
     Integer pages;
 
-    @Column
+    @Column(name = "genre")
     @Enumerated(EnumType.STRING)
-    EnumGenre genre;
+    GenreEnum genre;
 
-    @Column
+    @Column(name = "isbn")
     String isbn;
 
-    @Column
+    @Column(name = "price")
     Double price;
 
-    @Column
-    String release_date;
+    @Column(name = "release_date")
+    String releaseDate;
 
-    @Column
-    Boolean deleted_at;
+    @Column(name = "stocked")
+    Integer stocked;
 
-    @Column
-    String created_at;
+    @Column(name = "rating")
+    Double rating;
 
-    @Column
-    String updated_at;
+    @Column(name = "sales")
+    Integer sales;
 
-    public enum EnumGenre {
-        Romance,
-        Conto,
-        Poesia,
-        Crônica,
-        Biografia,
-        Fantasia,
-        Suspense,
-        Aventura,
-        Horror,
-        Histórico,
-        Infantil,
-        Educacional
-    }
+    @Column(name = "deleted_at")
+    Boolean deletedAt;
+
+    @Column(name = "created_at")
+    String createdAt;
+
+    @Column(name = "updated_at")
+    String updatedAt;
 }

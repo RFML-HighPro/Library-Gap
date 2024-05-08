@@ -1,6 +1,8 @@
 package br.com.livraygap.library.controllers;
 
+import br.com.livraygap.library.dtos.BookDTO;
 import br.com.livraygap.library.entities.Book;
+import br.com.livraygap.library.interfaces.FilterBook;
 import br.com.livraygap.library.services.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +17,14 @@ public class BookController {
     private final BookService service;
 
     @GetMapping("/GET-BOOK/{id}")
-    public ResponseEntity<Book> getBook(@PathVariable Long id){
-        Book book = service.getBookById(id);
+    public ResponseEntity<BookDTO> getBook(@PathVariable Long id){
+        BookDTO book = service.getBookConfigured(id);
         return ResponseEntity.ok(book);
     }
 
     @GetMapping("/ALL-BOOKS")
-    public ResponseEntity<List<Book>> getAllBooks(){
-        List<Book> books = service.getAllBooks();
+    public ResponseEntity<List<BookDTO>> getAllBooks(){
+        List<BookDTO> books = service.getAllBooksConfigured();
         return ResponseEntity.ok(books);
     }
 
@@ -42,5 +44,11 @@ public class BookController {
     public ResponseEntity<Object> delBook(@PathVariable Long id){
         service.delBook(id);
         return ResponseEntity.ok("Um livro foi deletado com sucesso!");
+    }
+
+    @GetMapping("/SEARCH-BOOK")
+    public ResponseEntity<List<Book>> searchBooks(@RequestBody FilterBook filter){
+        List<Book> books = service.getBookByFilter(filter);
+        return ResponseEntity.ok(books);
     }
 }

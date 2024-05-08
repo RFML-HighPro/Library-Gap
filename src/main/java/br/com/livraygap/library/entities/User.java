@@ -1,9 +1,8 @@
 package br.com.livraygap.library.entities;
 
+import br.com.livraygap.library.enums.UserEnum;
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.util.Date;
 
 @Entity
 @Table(name = "user_of_lib")
@@ -13,39 +12,31 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column
+    @Column(name = "name")
     String name;
 
-    @Column
+    @Column(name = "lastname")
     String lastname;
 
-    @Column
+    @Column(name = "contact")
     String contact;
 
-    @Column
+    @Column(name = "email")
     String email;
 
-    @Column
+    @Column(name = "cpf")
     String cpf;
 
-    @Column
+    @Column(name = "type_user")
     @Enumerated(EnumType.STRING)
-    EnumTypeUser type_user;
+    UserEnum typeUser;
 
-    @Column
-    Boolean deleted_at;
+    @Column(name = "deleted_at")
+    Boolean deletedAt;
 
-    @Column
-    String created_at;
+    @Column(name = "created_at")
+    String createdAt;
 
-    @Column
-    String updated_at;
-
-    public enum EnumTypeUser {
-        commom, admin
-    }
+    @Column(name = "updated_at")
+    String updatedAt;
 }
-
-
-
-
