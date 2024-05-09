@@ -20,7 +20,7 @@ public record BookDTO(
         Double rating,
         Integer sales
 ) {
-    public static BookDTO getDtoBook(Book book){
+    public static BookDTO getDtoBook(Book book) {
         return new BookDTO(
                 book.getId(),
                 book.getTitle(),

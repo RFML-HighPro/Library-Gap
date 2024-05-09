@@ -12,7 +12,8 @@ public record UserDTO(
         String cpf,
         String created_at,
         String updated_at,
-        UserEnum typeUser) {
+        UserEnum typeUser
+) {
     public static UserDTO getDtoUser(User user) {
         return new UserDTO(
                 user.getId(),

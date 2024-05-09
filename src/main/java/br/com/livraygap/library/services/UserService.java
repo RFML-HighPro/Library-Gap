@@ -23,7 +23,7 @@ public class UserService {
         return repository.findAll();
     }
 
-    private User getUser(Long id) {
+    public User getUserById(Long id) {
         return repository.findById(id).get();
     }
 
@@ -51,7 +51,7 @@ public class UserService {
     }
 
     public UserDTO getUserConfigured(Long id) {
-        User user = getUser(id);
+        User user = getUserById(id);
         return getDtoUser(user);
     }
 
@@ -61,13 +61,13 @@ public class UserService {
     }
 
     public void delUser(Long id) {
-        User userGetted = getUser(id);
+        User userGetted = getUserById(id);
         userGetted.setDeletedAt(true);
         saveOrUpdatedOrDelete(userGetted);
     }
 
     public void updUser(User user, Long id) {
-        Long userId = getUser(id).getId();
+        Long userId = getUserById(id).getId();
         user.setUpdatedAt(FormatDates.getDataByYearMonthDay(new Date()));
         user.setId(userId);
         saveOrUpdatedOrDelete(user);

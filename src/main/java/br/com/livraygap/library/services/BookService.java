@@ -20,7 +20,7 @@ public class BookService {
         repository.save(book);
     }
 
-    private Book getBookById(Long id) {
+    public Book getBookById(Long id) {
         return repository.findById(id).get();
     }
 
