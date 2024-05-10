@@ -15,10 +15,6 @@ import java.util.List;
 public class UserService {
     private final UserRepository repository;
 
-    private boolean existsUser(Long id) {
-        return repository.existsById(id);
-    }
-
     private List<User> getAllUsers() {
         return repository.findAll();
     }
@@ -31,33 +27,13 @@ public class UserService {
         repository.save(user);
     }
 
-    private UserDTO getDtoUser(User user){
-        return new UserDTO(
-                user.getId(),
-                user.getName(),
-                user.getLastname(),
-                user.getContact(),
-                user.getEmail(),
-                user.getCpf(),
-                user.getCreatedAt(),
-                user.getUpdatedAt(),
-                user.getTypeUser()
-        );
+    public List<UserDTO> getUsers() {
+        return getAllUsers().stream().map(UserDTO::new).toList();
     }
 
-    public void saveUser(User user) {
-        user.setCreatedAt(FormatDates.getDataByYearMonthDay(new Date()));
-        saveOrUpdatedOrDelete(user);
-    }
-
-    public UserDTO getUserConfigured(Long id) {
+    public UserDTO getUser(Long id) {
         User user = getUserById(id);
-        return getDtoUser(user);
-    }
-
-    public List<UserDTO> getAllUserConfigured() {
-;       List<User> users = getAllUsers();
-        return users.stream().map(this::getDtoUser).toList();
+        return new UserDTO(user);
     }
 
     public void delUser(Long id) {
@@ -66,10 +42,37 @@ public class UserService {
         saveOrUpdatedOrDelete(userGetted);
     }
 
-    public void updUser(User user, Long id) {
-        Long userId = getUserById(id).getId();
+    public void saveUser(UserDTO userDTO) {
+        User user = new User();
+
+        user.setName(userDTO.getName());
+        user.setLastname(userDTO.getLastname());
+        user.setContact(userDTO.getContact());
+        user.setEmail(userDTO.getEmail());
+        user.setCpf(userDTO.getCpf());
+        user.setUpdatedAt(userDTO.getUpdated_at());
+        user.setDeletedAt(userDTO.getDeletedAt());
+        user.setTypeUser(userDTO.getTypeUser());
+        user.setCreatedAt(FormatDates.getDataByYearMonthDay(new Date()));
+
+        saveOrUpdatedOrDelete(user);
+    }
+
+    public void updUser(UserDTO userDTO, Long id) {
+        User user = getUserById(id);
+
+        user.setName(userDTO.getName());
+        user.setLastname(userDTO.getLastname());
+        user.setContact(userDTO.getContact());
+        user.setEmail(userDTO.getEmail());
+        user.setCpf(userDTO.getCpf());
+        user.setUpdatedAt(userDTO.getUpdated_at());
+        user.setDeletedAt(userDTO.getDeletedAt());
+        user.setTypeUser(userDTO.getTypeUser());
+        user.setCreatedAt(userDTO.getCreated_at());
+        user.setDeletedAt(userDTO.getDeletedAt());
         user.setUpdatedAt(FormatDates.getDataByYearMonthDay(new Date()));
-        user.setId(userId);
+
         saveOrUpdatedOrDelete(user);
     }
 }

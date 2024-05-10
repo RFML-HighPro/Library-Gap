@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "purchase")
+@Table(name = "purchases")
 @Data
 public class Purchase {
     @Id
@@ -14,26 +14,26 @@ public class Purchase {
     Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_user", referencedColumnName = "id")
+    @JoinColumn(name = "userID", referencedColumnName = "id")
     User user;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_book", referencedColumnName = "id")
+    @JoinColumn(name = "bookID", referencedColumnName = "id")
     Book book;
 
     @Column(name = "quantity")
     Integer quantity;
 
-    @Column(name = "total_price")
+    @Column(name = "totalPrice")
     Double totalPrice;
 
-    @Column(name = "unit_price")
+    @Column(name = "unitPrice")
     Double unitPrice;
 
-    @Column(name = "purchase_date")
+    @Column(name = "purchaseDate")
     String purchaseDate;
 
-    @Column(name = "payment_method")
+    @Column(name = "paymentMethod")
     @Enumerated(EnumType.STRING)
     PaymentMethodEnum paymentMethod;
 
@@ -41,24 +41,18 @@ public class Purchase {
     @Enumerated(EnumType.STRING)
     StatusEnum status;
 
-    @Column(name = "shipping_address")
+    @Column(name = "shippingAddress")
     String shippingAddress;
 
     @Column(name = "discounts")
     Double discounts;
 
-    @Column(name = "shipping_cost")
+    @Column(name = "shippingCost")
     Double shippingCost;
 
-    @Column(name = "tracking_number")
+    @Column(name = "trackingNumber")
     String trackingNumber;
 
-    @Column(name = "deleted_at")
+    @Column(name = "deletedAt")
     Boolean deletedAt;
-
-    @Transient
-    Long keyUser;
-
-    @Transient
-    Long keyBook;
 }

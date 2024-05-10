@@ -4,8 +4,10 @@ import br.com.livraygap.library.enums.UserEnum;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
-@Table(name = "user_of_lib")
+@Table(name = "users")
 @Data
 public class User {
     @Id
@@ -27,16 +29,22 @@ public class User {
     @Column(name = "cpf")
     String cpf;
 
-    @Column(name = "type_user")
+    @Column(name = "typeUser")
     @Enumerated(EnumType.STRING)
     UserEnum typeUser;
 
-    @Column(name = "deleted_at")
+    @Column(name = "deletedAt")
     Boolean deletedAt;
 
-    @Column(name = "created_at")
+    @Column(name = "createdAt")
     String createdAt;
 
-    @Column(name = "updated_at")
+    @Column(name = "updatedAt")
     String updatedAt;
+
+    @OneToMany(mappedBy = "user")
+    List<WishList> listBookDesired;
 }
+
+
+

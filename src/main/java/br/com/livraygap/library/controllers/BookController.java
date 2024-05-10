@@ -1,7 +1,6 @@
 package br.com.livraygap.library.controllers;
 
 import br.com.livraygap.library.dtos.BookDTO;
-import br.com.livraygap.library.entities.Book;
 import br.com.livraygap.library.interfaces.FilterBook;
 import br.com.livraygap.library.services.BookService;
 import lombok.RequiredArgsConstructor;
@@ -18,24 +17,24 @@ public class BookController {
 
     @GetMapping("/GET-BOOK/{id}")
     public ResponseEntity<BookDTO> getBook(@PathVariable Long id){
-        BookDTO book = service.getBookConfigured(id);
+        BookDTO book = service.getBook(id);
         return ResponseEntity.ok(book);
     }
 
     @GetMapping("/ALL-BOOKS")
     public ResponseEntity<List<BookDTO>> getAllBooks(){
-        List<BookDTO> books = service.getAllBooksConfigured();
+        List<BookDTO> books = service.getBooks();
         return ResponseEntity.ok(books);
     }
 
     @PostMapping("/CREATE-BOOK")
-    public ResponseEntity<Object> createBook(@RequestBody Book book){
+    public ResponseEntity<Object> createBook(@RequestBody BookDTO book){
         service.addBook(book);
         return ResponseEntity.ok("Um livro foi criado com sucesso!");
     }
 
     @PutMapping("/UPDATE-BOOK/{id}")
-    public ResponseEntity<Object> updBook(@RequestBody Book book, @PathVariable Long id){
+    public ResponseEntity<Object> updBook(@RequestBody BookDTO book, @PathVariable Long id){
         service.updBook(book, id);
         return ResponseEntity.ok("Um livro foi atualizado com sucesso!");
     }
@@ -47,8 +46,8 @@ public class BookController {
     }
 
     @GetMapping("/SEARCH-BOOK")
-    public ResponseEntity<List<Book>> searchBooks(@RequestBody FilterBook filter){
-        List<Book> books = service.getBookByFilter(filter);
+    public ResponseEntity<List<BookDTO>> searchBooks(@RequestBody FilterBook filter){
+        List<BookDTO> books = service.getBookByFilter(filter);
         return ResponseEntity.ok(books);
     }
 }

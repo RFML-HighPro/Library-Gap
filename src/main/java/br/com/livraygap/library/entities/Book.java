@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "book")
+@Table(name = "books")
 @Data
 public class Book {
     @Id
@@ -34,7 +34,7 @@ public class Book {
     @Column(name = "price")
     Double price;
 
-    @Column(name = "release_date")
+    @Column(name = "releaseDate")
     String releaseDate;
 
     @Column(name = "stocked")
@@ -46,12 +46,15 @@ public class Book {
     @Column(name = "sales")
     Integer sales;
 
-    @Column(name = "deleted_at")
+    @Column(name = "deletedAt")
     Boolean deletedAt;
 
-    @Column(name = "created_at")
+    @Column(name = "createdAt")
     String createdAt;
 
-    @Column(name = "updated_at")
+    @Column(name = "updatedAt")
     String updatedAt;
 }
+
+
+

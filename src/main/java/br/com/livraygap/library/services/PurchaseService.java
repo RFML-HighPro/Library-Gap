@@ -1,5 +1,6 @@
 package br.com.livraygap.library.services;
 
+import br.com.livraygap.library.dtos.PurchaseDTO;
 import br.com.livraygap.library.entities.Book;
 import br.com.livraygap.library.entities.Purchase;
 import br.com.livraygap.library.entities.User;
@@ -26,8 +27,17 @@ public class PurchaseService {
         return repository.findById(id).get();
     }
 
-    public List<Purchase> getAllPurchase(){
+    private List<Purchase> getAllPurchases(){
         return repository.findAll();
+    }
+
+    public List<PurchaseDTO> getPurchases(){
+        return getAllPurchases().stream().map(PurchaseDTO::new).toList();
+    }
+
+    public PurchaseDTO getPurchase(Long id){
+        Purchase purchase = getPurchaseById(id);
+        return new PurchaseDTO(purchase);
     }
 
     public void delPurchase(Long id) {
@@ -36,10 +46,11 @@ public class PurchaseService {
         saveOrDeleteOrUpdate(purchase);
     }
 
-    public void savePurchase(Purchase purchase){
-        User user = userService.getUserById(purchase.getKeyUser());
-        Book book = bookService.getBookById(purchase.getKeyBook());
+    public void savePurchase(PurchaseDTO purchaseDTO){
+        User user = userService.getUserById(purchaseDTO.getKeyUser());
+        Book book = bookService.getBookById(purchaseDTO.getKeyBook());
 
+        Purchase purchase = new Purchase();
         purchase.setUser(user);
         purchase.setBook(book);
 
@@ -47,7 +58,16 @@ public class PurchaseService {
         purchase.setUnitPrice(book.getPrice());
         purchase.setTotalPrice(priceObtained);
 
+        purchase.setQuantity(purchaseDTO.getQuantity());
+        purchase.setPaymentMethod(purchaseDTO.getPaymentMethod());
+        purchase.setStatus(purchaseDTO.getStatus());
+        purchase.setShippingAddress(purchaseDTO.getShippingAddress());
+        purchase.setDiscounts(purchaseDTO.getDiscounts());
+        purchase.setShippingCost(purchaseDTO.getShippingCost());
+        purchase.setTrackingNumber(purchaseDTO.getTrackingNumber());
+        purchase.setDeletedAt(purchaseDTO.getDeletedAt());
         purchase.setPurchaseDate(FormatDates.getDataByYearMonthDay(new Date()));
+
         saveOrDeleteOrUpdate(purchase);
     }
 }

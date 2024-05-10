@@ -1,6 +1,6 @@
 package br.com.livraygap.library.controllers;
 
-import br.com.livraygap.library.entities.Purchase;
+import br.com.livraygap.library.dtos.PurchaseDTO;
 import br.com.livraygap.library.services.PurchaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,20 +15,20 @@ public class PurchaseController {
     private final PurchaseService service;
 
     @PostMapping("/CREATE-PURCHASE")
-    public ResponseEntity<Object> savePurchase(@RequestBody Purchase purchase){
+    public ResponseEntity<Object> savePurchase(@RequestBody PurchaseDTO purchase){
         service.savePurchase(purchase);
         return ResponseEntity.ok("Compra efetuada com sucesso");
     }
 
     @GetMapping("/GET-PURCHASE/{id}")
-    public ResponseEntity<Purchase> getPurchase(@PathVariable Long id){
-        Purchase purchase = service.getPurchaseById(id);
+    public ResponseEntity<PurchaseDTO> getPurchase(@PathVariable Long id){
+        PurchaseDTO purchase = service.getPurchase(id);
         return ResponseEntity.ok(purchase);
     }
 
     @GetMapping("/ALL-PURCHASE")
-    public ResponseEntity<List<Purchase>> getAllPurchases(){
-        List<Purchase> purchases = service.getAllPurchase();
+    public ResponseEntity<List<PurchaseDTO>> getAllPurchases(){
+        List<PurchaseDTO> purchases = service.getPurchases();
         return ResponseEntity.ok(purchases);
     }
 
