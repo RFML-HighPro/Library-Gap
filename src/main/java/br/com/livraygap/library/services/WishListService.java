@@ -29,8 +29,8 @@ public class WishListService {
         return repository.findById(id).get();
     }
 
-    public List<WishList> getWishListsByUser(Long id){
-        return repository.findByuserID(id);
+    public List<WishList> getWishListsByUser(User user){
+        return repository.findByUser(user);
     }
 
     public WishListDTO getItemOfWishList(Long id){
@@ -38,7 +38,8 @@ public class WishListService {
     }
 
     public List<WishListDTO> getWishLists(Long id){
-        return getWishListsByUser(id).stream().map(WishListDTO::new).toList();
+        User user = userService.getUserById(id);
+        return getWishListsByUser(user).stream().map(WishListDTO::new).toList();
     }
 
     public void saveBook(WishListDTO wishListDTO){

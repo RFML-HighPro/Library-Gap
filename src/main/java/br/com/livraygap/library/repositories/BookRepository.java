@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
-    @Query("SELECT b FROM Book b WHERE b.stocked < 12")
+    @Query("SELECT b FROM Book b WHERE b.stock < 12")
     List<Book> findByStocked();
 
     @Query("SELECT b FROM Book b WHERE b.rating > 8.5")

@@ -3,8 +3,10 @@ package br.com.livraygap.library.dtos;
 import br.com.livraygap.library.entities.Book;
 import br.com.livraygap.library.enums.GenreEnum;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class BookDTO {
     Long id;
     String title;
@@ -18,7 +20,7 @@ public class BookDTO {
     String createdAt;
     Boolean deletedAt;
     String updatedAt;
-    Integer stocked;
+    Integer stock;
     Double rating;
     Integer sales;
 
@@ -35,7 +37,7 @@ public class BookDTO {
         this.createdAt = book.getCreatedAt();
         this.deletedAt = book.getDeletedAt();
         this.updatedAt = book.getUpdatedAt();
-        this.stocked = book.getStocked();
+        this.stock = book.getStock();
         this.rating = book.getRating();
         this.sales = book.getSales();
     }

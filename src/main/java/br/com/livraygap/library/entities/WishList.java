@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "wishLists")
+@Table(name = "wish_lists")
 @Data
 public class WishList {
     @Id
@@ -12,10 +12,10 @@ public class WishList {
     Long id;
 
     @ManyToOne
-    @JoinColumn(name = "userID", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     User user;
 
     @ManyToOne
-    @JoinColumn(name = "bookID", referencedColumnName = "id")
+    @JoinColumn(name = "book_id", referencedColumnName = "id")
     Book book;
 }

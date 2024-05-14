@@ -14,26 +14,26 @@ public class Purchase {
     Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userID", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     User user;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bookID", referencedColumnName = "id")
+    @JoinColumn(name = "book_id", referencedColumnName = "id")
     Book book;
 
     @Column(name = "quantity")
     Integer quantity;
 
-    @Column(name = "totalPrice")
+    @Column(name = "total_price")
     Double totalPrice;
 
-    @Column(name = "unitPrice")
+    @Column(name = "unit_price")
     Double unitPrice;
 
-    @Column(name = "purchaseDate")
+    @Column(name = "purchase_date")
     String purchaseDate;
 
-    @Column(name = "paymentMethod")
+    @Column(name = "payment_method")
     @Enumerated(EnumType.STRING)
     PaymentMethodEnum paymentMethod;
 
@@ -41,18 +41,18 @@ public class Purchase {
     @Enumerated(EnumType.STRING)
     StatusEnum status;
 
-    @Column(name = "shippingAddress")
+    @Column(name = "shipping_address")
     String shippingAddress;
 
     @Column(name = "discounts")
     Double discounts;
 
-    @Column(name = "shippingCost")
+    @Column(name = "shipping_cost")
     Double shippingCost;
 
-    @Column(name = "trackingNumber")
+    @Column(name = "tracking_number")
     String trackingNumber;
 
-    @Column(name = "deletedAt")
+    @Column(name = "deleted_at")
     Boolean deletedAt;
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/API/BOOK-DESIRED")
+@RequestMapping("/API/WISHLIST")
 @RequiredArgsConstructor
 public class WishListController {
     private final WishListService service;
@@ -21,8 +21,8 @@ public class WishListController {
     }
     @GetMapping("/GET-WISH-LIST/{id}")
     public ResponseEntity<WishListDTO> getItemOfWishList(@PathVariable Long id){
-        WishListDTO bookDesired = service.getItemOfWishList(id);
-        return ResponseEntity.ok(bookDesired);
+        WishListDTO wishList = service.getItemOfWishList(id);
+        return ResponseEntity.ok(wishList);
     }
 
     @GetMapping("/GET-WISH-LIST-BY-USER/{id}")
@@ -33,8 +33,8 @@ public class WishListController {
 
     @GetMapping("/ALL-WISH-LIST")
     public ResponseEntity<List<WishListDTO>> getAllItemOfWishList(@PathVariable Long id){
-        List<WishListDTO> booksDesired = service.getWishLists(id);
-        return ResponseEntity.ok(booksDesired);
+        List<WishListDTO> wishLists = service.getWishLists(id);
+        return ResponseEntity.ok(wishLists);
     }
 
     @DeleteMapping("/DEL-WISH-LIST/{id}")

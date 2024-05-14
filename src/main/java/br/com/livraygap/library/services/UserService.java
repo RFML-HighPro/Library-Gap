@@ -50,7 +50,7 @@ public class UserService {
         user.setContact(userDTO.getContact());
         user.setEmail(userDTO.getEmail());
         user.setCpf(userDTO.getCpf());
-        user.setUpdatedAt(userDTO.getUpdated_at());
+        user.setUpdatedAt(userDTO.getUpdatedAt());
         user.setDeletedAt(userDTO.getDeletedAt());
         user.setTypeUser(userDTO.getTypeUser());
         user.setCreatedAt(FormatDates.getDataByYearMonthDay(new Date()));
@@ -66,10 +66,10 @@ public class UserService {
         user.setContact(userDTO.getContact());
         user.setEmail(userDTO.getEmail());
         user.setCpf(userDTO.getCpf());
-        user.setUpdatedAt(userDTO.getUpdated_at());
+        user.setUpdatedAt(userDTO.getUpdatedAt());
         user.setDeletedAt(userDTO.getDeletedAt());
         user.setTypeUser(userDTO.getTypeUser());
-        user.setCreatedAt(userDTO.getCreated_at());
+        user.setCreatedAt(userDTO.getCreatedAt());
         user.setDeletedAt(userDTO.getDeletedAt());
         user.setUpdatedAt(FormatDates.getDataByYearMonthDay(new Date()));
 

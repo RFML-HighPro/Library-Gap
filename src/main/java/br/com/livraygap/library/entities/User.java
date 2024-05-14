@@ -1,6 +1,7 @@
 package br.com.livraygap.library.entities;
 
 import br.com.livraygap.library.enums.UserEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -29,22 +30,28 @@ public class User {
     @Column(name = "cpf")
     String cpf;
 
-    @Column(name = "typeUser")
+    @Column(name = "type_user")
     @Enumerated(EnumType.STRING)
     UserEnum typeUser;
 
-    @Column(name = "deletedAt")
+    @Column(name = "deleted_at")
     Boolean deletedAt;
 
-    @Column(name = "createdAt")
+    @Column(name = "created_at")
     String createdAt;
 
-    @Column(name = "updatedAt")
+    @Column(name = "updated_at")
     String updatedAt;
 
-    @OneToMany(mappedBy = "user")
-    List<WishList> listBookDesired;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    List<WishList> wishList;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    List<PurchaseHistory> purchaseHistory;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    List<Rating> ratings;
 }
-
-
-

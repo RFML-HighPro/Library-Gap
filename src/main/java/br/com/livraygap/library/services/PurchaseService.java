@@ -54,7 +54,7 @@ public class PurchaseService {
         purchase.setUser(user);
         purchase.setBook(book);
 
-        Double priceObtained = purchase.getQuantity() * book.getPrice();
+        Double priceObtained = purchaseDTO.getQuantity() * book.getPrice();
         purchase.setUnitPrice(book.getPrice());
         purchase.setTotalPrice(priceObtained);
 

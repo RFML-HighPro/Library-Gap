@@ -6,8 +6,10 @@ import br.com.livraygap.library.entities.User;
 import br.com.livraygap.library.enums.PaymentMethodEnum;
 import br.com.livraygap.library.enums.StatusEnum;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class PurchaseDTO {
     Long id;
     User user;

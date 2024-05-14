@@ -82,7 +82,7 @@ public class BookService {
         book.setReleaseDate(bookDTO.getReleaseDate());
         book.setDeletedAt(bookDTO.getDeletedAt());
         book.setUpdatedAt(bookDTO.getUpdatedAt());
-        book.setStocked(bookDTO.getStocked());
+        book.setStock(bookDTO.getStock());
         book.setRating(bookDTO.getRating());
         book.setSales(bookDTO.getSales());
         book.setCreatedAt(FormatDates.getDataByYearMonthDay(new Date()));
@@ -104,7 +104,7 @@ public class BookService {
         book.setReleaseDate(bookDTO.getReleaseDate());
         book.setDeletedAt(bookDTO.getDeletedAt());
         book.setCreatedAt(bookDTO.getCreatedAt());
-        book.setStocked(bookDTO.getStocked());
+        book.setStock(bookDTO.getStock());
         book.setRating(bookDTO.getRating());
         book.setSales(bookDTO.getSales());
         book.setUpdatedAt(FormatDates.getDataByYearMonthDay(new Date()));

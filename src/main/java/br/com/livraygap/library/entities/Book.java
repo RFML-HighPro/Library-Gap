@@ -1,8 +1,11 @@
 package br.com.livraygap.library.entities;
 
 import br.com.livraygap.library.enums.GenreEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -34,11 +37,11 @@ public class Book {
     @Column(name = "price")
     Double price;
 
-    @Column(name = "releaseDate")
+    @Column(name = "release_date")
     String releaseDate;
 
-    @Column(name = "stocked")
-    Integer stocked;
+    @Column(name = "stock")
+    Integer stock;
 
     @Column(name = "rating")
     Double rating;
@@ -46,15 +49,22 @@ public class Book {
     @Column(name = "sales")
     Integer sales;
 
-    @Column(name = "deletedAt")
+    @Column(name = "deleted_at")
     Boolean deletedAt;
 
-    @Column(name = "createdAt")
+    @Column(name = "created_at")
     String createdAt;
 
-    @Column(name = "updatedAt")
+    @Column(name = "updated_at")
     String updatedAt;
+
+    @OneToMany(mappedBy = "book")
+    @JsonIgnore
+    List<Rating> ratings;
 }
+
+
+
 
 
 
